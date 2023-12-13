@@ -45,6 +45,18 @@ async function Deposit() {
         }
       }
     });
+    try {
+      CEXClient.put("/coin/updateSupply").then((response) => {
+        console.log("Success update supply:", response);
+      });
+    } catch (error) {
+      console.log(
+        "error -",
+        error?.response?.data?.message,
+        " - txhash: ",
+        txhash
+      );
+    }
   } catch (error) {
     console.log(error);
   }
